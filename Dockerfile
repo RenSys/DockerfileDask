@@ -1,7 +1,5 @@
 FROM daskdev/dask-notebook
+RUN wget -O - https://raw.githubusercontent.com/RenSys/DockerfileDask/master/environment.yml > /environment.yml
 ADD environment.yml /tmp/environment.yml
 RUN conda env update --name base -f /tmp/environment.yml
 WORKDIR /home/jovyan/home
-COPY . /app
-EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
